@@ -4,6 +4,7 @@ public class MainManager : MonoBehaviour {
 
     private static MainManager instance;
     private EventManager eventManager;
+    private ThemeManager themeManager;
     private ItemsManager itemsManager; 
     private ScoreManager scoreManager;
     private CoinManager coinManager;
@@ -13,6 +14,7 @@ public class MainManager : MonoBehaviour {
 
     public static MainManager Instance { get { return instance; } }
     public EventManager EventManager { get { return eventManager; } }
+    public ThemeManager ThemeManager { get { return themeManager; } }
     public ItemsManager ItemsManager { get { return itemsManager; } }
     public ScoreManager ScoreManager { get { return scoreManager; } }
     public CoinManager CoinManager { get { return coinManager; } }
@@ -24,10 +26,11 @@ public class MainManager : MonoBehaviour {
         Initialize();
     }
 
-    private void Initialize() {
+    public void Initialize() {
         instance = this;
 
         eventManager = GetComponent<EventManager>(); 
+        themeManager = GetComponent<ThemeManager>(); 
         itemsManager= GetComponent<ItemsManager>();
         scoreManager = GetComponent<ScoreManager>();
         coinManager = GetComponent<CoinManager>();
@@ -35,6 +38,7 @@ public class MainManager : MonoBehaviour {
         eventManager.Initialize();
         gameManager.Initialize();
         itemsManager.Initialize();
+        themeManager.Initialize();
         scoreManager.Initialize();
         coinManager.Initialize();
         menuManager.Initialize();

@@ -7,8 +7,11 @@ public class Item : MyGrid.Code.TileController {
     Rigidbody2D rb;
 
     public void Initialize() {
-        transform.DOPunchScale(new Vector3(1, 1, 0), .5f, 0, 0);
+        transform.DOPunchScale(new Vector3(1, 1, 0), .5f, 0, 0); 
+        GetComponent<SpriteRenderer>().color = MainManager.Instance.ThemeManager.GetActiveTheme().GetColors()[3];
     }
+     
+
     public RaycastHit2D ShootRay() {
         return Physics2D.Raycast(transform.position + transform.forward, transform.forward, 8, shootLayer);
     }

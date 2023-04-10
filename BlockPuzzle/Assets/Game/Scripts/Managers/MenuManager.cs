@@ -5,13 +5,16 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] MainCanvas mainCanvas;
+    [SerializeField] MenuCanvas menuCanvas;
+    [SerializeField] GameCanvas gameCanvas;
     [SerializeField] EndCanvas endCanvas;
-    public MainCanvas MainCanvas { get { return mainCanvas; } }
+    public MenuCanvas MenuCanvas { get { return menuCanvas; } }
+    public GameCanvas GameCanvas { get { return gameCanvas; } }
     public EndCanvas EndCanvas { get { return endCanvas; } }
 
     public void Initialize() {
-        mainCanvas.Initialize();
+        menuCanvas.Initialize();
+        gameCanvas.Initialize();
         endCanvas.Initialize(); 
         MainManager.Instance.EventManager.onGameEnd += GameEnd;
     }

@@ -52,6 +52,9 @@ public class EndCanvas : UI {
         Application.Quit();
     }
     public void Restart() {
+        MainManager.Instance.Initialize();
+    }
+    public void Mainmenu() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

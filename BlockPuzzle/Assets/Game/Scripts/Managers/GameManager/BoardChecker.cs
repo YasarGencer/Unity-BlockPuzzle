@@ -69,7 +69,7 @@ public class BoardChecker : MonoBehaviour {
         StartCoroutine(RunEnd(value));
     }
     IEnumerator RunEnd(int value) {
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(.75f);
         if (CheckForPlaces(value) == false) 
             MainManager.Instance.EventManager.RunOnGameEnd();
     }

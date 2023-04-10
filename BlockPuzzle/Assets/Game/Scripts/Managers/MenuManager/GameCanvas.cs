@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine; 
 using static EventManager;
 
-public class MainCanvas : UI {
+public class GameCanvas : UI {
     [SerializeField] private TextMeshProUGUI scoreText, scoreUpText;
     public override void Initialize() {
         MainManager.Instance.EventManager.onScoreUp += OnScoreUp;

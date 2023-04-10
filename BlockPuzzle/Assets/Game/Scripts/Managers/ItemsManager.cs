@@ -24,5 +24,5 @@ public class ItemsManager : MonoBehaviour
                 SpawnItem(i);
             }
         }
-    } 
+    }
 }

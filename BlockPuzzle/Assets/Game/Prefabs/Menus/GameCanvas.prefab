@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 5340068522727805667}
   m_Layer: 5
   m_Name: SccoreUpText
-  m_TagString: Untagged
+  m_TagString: color3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 5340068522835715529}
   m_Layer: 5
   m_Name: ScoreText
-  m_TagString: Untagged
+  m_TagString: color1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 5340068523044703178}
   m_Layer: 5
   m_Name: ScoreTextName
-  m_TagString: Untagged
+  m_TagString: color1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 5340068523084264213}
   m_Layer: 5
   m_Name: ScoreTextBG
-  m_TagString: Untagged
+  m_TagString: color2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 5340068523392280536}
   - component: {fileID: 5340068523392280539}
   m_Layer: 5
-  m_Name: MainCanvas
+  m_Name: GameCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

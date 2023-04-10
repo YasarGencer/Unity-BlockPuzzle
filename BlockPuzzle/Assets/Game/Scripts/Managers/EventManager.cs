@@ -5,12 +5,14 @@ public class EventManager : MonoBehaviour
 {
     public delegate void OnGamePuase();
     public delegate void OnGameUnPuase();
-    public delegate void OnGameStart();
+    public delegate void OnGameStart(); 
     public delegate void OnGameEnd();
     public delegate void OnItemPalced(int index);
     public delegate void OnKill();
     public delegate void OnKillLayerUp();
     public delegate void OnScoreUp(int currentScore, int scoreUp);
+    public delegate void OnBuy();
+    public delegate void OnSelect();
 
 
     public event OnGamePuase onGamePause;
@@ -21,6 +23,8 @@ public class EventManager : MonoBehaviour
     public event OnKill onKill;
     public event OnKillLayerUp onKillLayerUp;
     public event OnScoreUp onScoreUp;
+    public event OnBuy onBuy;
+    public event OnSelect onSelect;
     public void Initialize() {
     }
     public void RunOnGamePause() {
@@ -47,4 +51,10 @@ public class EventManager : MonoBehaviour
     public void RunOnScoreUp(int currentScore, int scoreUp) {
         onScoreUp(currentScore, scoreUp);
     } 
+    public void RunOnBuy() {
+        onBuy();
+    }
+    public void RunOnSelect() {
+        onSelect();
+    }
 }
