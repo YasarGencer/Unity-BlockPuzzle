@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemCreator : MonoBehaviour
 {
     public static void Create(List<TileController> objects) {
-        int selected = Random.Range(0, 4); 
+        int selected = Random.Range(0, 19); 
         switch (selected) {
             case 0: //3X3 BOX
                 Creator(objects, true, true, true, true, true, true, true, true, true);
@@ -18,7 +18,52 @@ public class ItemCreator : MonoBehaviour
                 break;
             case 3: //1X1 BOX
                 Creator(objects, false, false, false, false, true, false, false, false, false);
-                break; 
+                break;
+            case 4: //LEFT UP L HORIZONTAL
+                Creator(objects, false, false, false, true, true, true, true, false, false);
+                break;
+            case 5: //RIGHT UP L HORIZONTAL
+                Creator(objects, false, false, false, true, true, true, false, false, true);
+                break;
+            case 6: //LEFT DOWN L HORIZONTAL
+                Creator(objects, true, false, false, true, true, true, false, false, false);
+                break;
+            case 7: //RIGHT DOWN L HORIZONTAL
+                Creator(objects, false, false, true, true, true, true, false, false, false);
+                break;
+            case 8: //LEFT UP L VERTICAL
+                Creator(objects, false, true, false, false, true, false, true, true, false);
+                break;
+            case 9: //RIGHT UP L VERTICAL
+                Creator(objects, false, true, false, false, true, false, false, true, true);
+                break;
+            case 10: //LEFT DOWN L VERTICAL
+                Creator(objects, true, true, false, false, true, false, false, true, false);
+                break;
+            case 11: //RIGHT DOWN L VERTICAL
+                Creator(objects, false, true, true, false, true, false, false, true, false);
+                break;
+            case 12: //MIDDLE UP
+                Creator(objects, false, false, false, true, true, true, false, true, false);
+                break;
+            case 13: //MIDDLE DOWN
+                Creator(objects, false, true, false, true, true, true, false, false, false);
+                break;
+            case 14: //MIDDLE RIGHT
+                Creator(objects, false, true, false, false, true, true, false, true, false);
+                break;
+            case 15: //MIDDLE LEFT
+                Creator(objects, false, true, false, true, true, false, false, true, false);
+                break;
+            case 16: //Z HORIZONTAL
+                Creator(objects, false, false, false, true, true, false, false, true, true);
+                break;
+            case 17: //Z VERTICAL
+                Creator(objects, false, true, false, true, true, false, true, false, false);
+                break;
+            case 18: //2X2 SQUARE
+                Creator(objects, false, false, false, false, true, true, false, true, true);
+                break;
             default:
                 break;
         }

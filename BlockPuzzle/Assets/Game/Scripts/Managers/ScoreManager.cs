@@ -19,6 +19,7 @@ public class ScoreManager : MonoBehaviour
         killedLayerCount = 0;
         MainManager.Instance.EventManager.onKill += OnKill;
         MainManager.Instance.EventManager.onKillLayerUp += OnKillLayerUp;
+        MainManager.Instance.EventManager.onGameEnd += SetHighscores;
     }
 
     private void OnKillLayerUp() { 
@@ -43,5 +44,28 @@ public class ScoreManager : MonoBehaviour
     }
     void SetScoreUp() {
         isScoreUp = false;
+    }
+    void SetHighscores() {
+        var score1 = GetHighscore(1);
+        var score2 = GetHighscore(2);
+        var score3 = GetHighscore(3);
+
+
+        if (Score >= score1) {
+            SetHighscore(1, Score);
+            SetHighscore(2,score1);  
+            SetHighscore(3,score2);  
+        } else if (Score >= score2) {
+            SetHighscore(2, Score);
+            SetHighscore(3, score2);
+        }
+        else if (Score > score3)
+            SetHighscore(3, Score);
+    }
+    public int GetHighscore(int index) {
+        return PlayerPrefs.GetInt("hs" + index, 0);
+    }
+    void SetHighscore(int index, int value) {
+        PlayerPrefs.SetInt("hs" + index, value);
     }
 }

@@ -1,18 +1,23 @@
 using UnityEngine;
 
 public class MainManager : MonoBehaviour {
+
     private static MainManager instance;
     private EventManager eventManager;
-    [SerializeField] private GameManager gameManager;
     private ItemsManager itemsManager; 
     private ScoreManager scoreManager;
-    private MenuManager menuManager;
+    private CoinManager coinManager;
+
+    [SerializeField] private GameManager gameManager;
+    [SerializeField]  private MenuManager menuManager;
 
     public static MainManager Instance { get { return instance; } }
     public EventManager EventManager { get { return eventManager; } }
-    public GameManager GameManager { get { return gameManager; } }
     public ItemsManager ItemsManager { get { return itemsManager; } }
     public ScoreManager ScoreManager { get { return scoreManager; } }
+    public CoinManager CoinManager { get { return coinManager; } }
+
+    public GameManager GameManager { get { return gameManager; } }
     public MenuManager MenuManager { get { return menuManager; } }
 
     public void Awake() {
@@ -25,12 +30,13 @@ public class MainManager : MonoBehaviour {
         eventManager = GetComponent<EventManager>(); 
         itemsManager= GetComponent<ItemsManager>();
         scoreManager = GetComponent<ScoreManager>();
-        menuManager = GetComponent<MenuManager>();
+        coinManager = GetComponent<CoinManager>();
 
         eventManager.Initialize();
         gameManager.Initialize();
         itemsManager.Initialize();
         scoreManager.Initialize();
+        coinManager.Initialize();
         menuManager.Initialize();
     }
 }

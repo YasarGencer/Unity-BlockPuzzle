@@ -5,6 +5,10 @@ public class Item : MyGrid.Code.TileController {
     [SerializeField] LayerMask shootLayer;
     bool isAlive = true;
     Rigidbody2D rb;
+
+    public void Initialize() {
+        transform.DOPunchScale(new Vector3(1, 1, 0), .5f, 0, 0);
+    }
     public RaycastHit2D ShootRay() {
         return Physics2D.Raycast(transform.position + transform.forward, transform.forward, 8, shootLayer);
     }
@@ -34,6 +38,7 @@ public class Item : MyGrid.Code.TileController {
     }
 
     public void Kill() {
+        Destroy(GetComponent<BoxCollider2D>());
         rb.gravityScale = 1;
         transform.DOPunchScale(new Vector3(1, 1, 0), .5f, 0, 0).OnComplete(() => PunchComplete());
     }

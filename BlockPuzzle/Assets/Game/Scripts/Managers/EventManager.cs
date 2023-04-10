@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
@@ -5,6 +6,7 @@ public class EventManager : MonoBehaviour
     public delegate void OnGamePuase();
     public delegate void OnGameUnPuase();
     public delegate void OnGameStart();
+    public delegate void OnGameEnd();
     public delegate void OnItemPalced(int index);
     public delegate void OnKill();
     public delegate void OnKillLayerUp();
@@ -14,6 +16,7 @@ public class EventManager : MonoBehaviour
     public event OnGamePuase onGamePause;
     public event OnGameUnPuase onGameUnPause;
     public event OnGameStart onGameStart;
+    public event OnGameEnd onGameEnd;
     public event OnItemPalced onItemPlaced;
     public event OnKill onKill;
     public event OnKillLayerUp onKillLayerUp;
@@ -29,6 +32,9 @@ public class EventManager : MonoBehaviour
     public void RunOnGameStart() {
         onGameStart();
     }
+    public void RunOnGameEnd() {
+        onGameEnd();
+    }
     public void RunOnItemPalced(int index) {
         onItemPlaced(index);
     }
@@ -40,6 +46,5 @@ public class EventManager : MonoBehaviour
     }
     public void RunOnScoreUp(int currentScore, int scoreUp) {
         onScoreUp(currentScore, scoreUp);
-    }
-
+    } 
 }

@@ -1,15 +1,11 @@
-using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening; 
 using TMPro;
-using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine; 
 using static EventManager;
 
-public class MainCanvas : MonoBehaviour {
+public class MainCanvas : UI {
     [SerializeField] private TextMeshProUGUI scoreText, scoreUpText;
-    public void Initialize() {
+    public override void Initialize() {
         MainManager.Instance.EventManager.onScoreUp += OnScoreUp;
         scoreText.SetText("0"); 
     } 
