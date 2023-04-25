@@ -1,10 +1,15 @@
 using Newtonsoft.Json.Linq;
-using System.Collections; 
+using System.Collections;
+using System.Threading;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class BoardChecker : MonoBehaviour {
     [SerializeField] BoardCheckers[] boardCheckers;
     bool[] isFull;
+    float timer;
+    int value;
+    bool hasTried;
     public void Initialize() { 
         isFull= new bool[boardCheckers.Length];
         MainManager.Instance.EventManager.onItemPlaced += CheckForScore;
@@ -47,32 +52,60 @@ public class BoardChecker : MonoBehaviour {
             }
         }
         //destroy horizontal
+        Color color = new();
+        bool bonus = true;
         for (int i = 0; i < 10; i++) {
             if (horizontals[i]) {
                 MainManager.Instance.EventManager.RunOnKillLayerUp();
+
+                color = boardCheckers[i * 10 + 0].CheckObject().GetComponent<SpriteRenderer>().color;
+                bonus = true;
+
                 for (int j = 0; j < 10; j++) {
-                    boardCheckers[i * 10 + j].CheckObject().GetComponent<Item>().Kill();
+                    var item = boardCheckers[i * 10 + j].CheckObject();
+                    if (color != item.GetComponent<SpriteRenderer>().color)
+                        bonus = false;
+                    item.GetComponent<Item>().Kill(); 
                 }
+                if (bonus == true)
+                    MainManager.Instance.ScoreManager.ColorBonus();
             }
         }
         //destroy vertic
         for (int i = 0; i < 10; i++) {
             if (verticals[i]) {
                 MainManager.Instance.EventManager.RunOnKillLayerUp();
-                for (int j = 0; j < 10; j++) {
-                    boardCheckers[j * 10 + i].CheckObject().GetComponent<Item>().Kill();
+
+                color = boardCheckers[0 * 10 + i].CheckObject().GetComponent<SpriteRenderer>().color;
+                bonus = true;
+
+                for (int j = 0; j < 10; j++) { 
+                    var item = boardCheckers[j * 10 + i].CheckObject();
+                    if (color != item.GetComponent<SpriteRenderer>().color)
+                        bonus = false;
+                    item.GetComponent<Item>().Kill();
                 }
+                if (bonus == true)
+                    MainManager.Instance.ScoreManager.ColorBonus();
             }
         }
     }
-    void CheckForGame(int value) { 
-        StartCoroutine(RunEnd(value));
+    void CheckForGame(int value) {
+        this.value = value;
+        timer = 0;
+        hasTried = false;
     }
-    IEnumerator RunEnd(int value) {
-        yield return new WaitForSeconds(.75f);
-        if (CheckForPlaces(value) == false) 
-            MainManager.Instance.EventManager.RunOnGameEnd();
-    }
+    private void Update() {
+        if (hasTried)
+            return;
+        if(timer >= 5) {
+            if (CheckForPlaces(value) == false)
+                MainManager.Instance.EventManager.RunOnGameEnd();
+            hasTried = true;
+        } else {
+            timer += Time.deltaTime;
+        }
+    } 
     bool CheckForPlaces(int value) {
         Transform[] items = MainManager.Instance.ItemsManager.ItemPlaces; 
         for (int i = 0; i < items.Length; i++)

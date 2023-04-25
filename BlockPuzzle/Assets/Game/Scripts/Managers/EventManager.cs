@@ -10,7 +10,7 @@ public class EventManager : MonoBehaviour
     public delegate void OnItemPalced(int index);
     public delegate void OnKill();
     public delegate void OnKillLayerUp();
-    public delegate void OnScoreUp(int currentScore, int scoreUp);
+    public delegate void OnScoreUp(int currentScore, int scoreUp, bool colorBonus);
     public delegate void OnBuy();
     public delegate void OnSelect();
 
@@ -48,8 +48,8 @@ public class EventManager : MonoBehaviour
     public void RunOnKillLayerUp() {
         onKillLayerUp();
     }
-    public void RunOnScoreUp(int currentScore, int scoreUp) {
-        onScoreUp(currentScore, scoreUp);
+    public void RunOnScoreUp(int currentScore, int scoreUp, bool colorBonus) {
+        onScoreUp(currentScore, scoreUp, colorBonus);
     } 
     public void RunOnBuy() {
         onBuy();

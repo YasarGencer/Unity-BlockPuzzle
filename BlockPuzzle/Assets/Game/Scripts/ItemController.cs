@@ -2,6 +2,7 @@ using MyGrid.Code;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class ItemController : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
@@ -10,9 +11,15 @@ public class ItemController : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void Initiazlie() {
         gridmanager = GetComponent<GridManager>();
         ItemCreator.Create(gridmanager.Tiles);
-        foreach (var item in gridmanager.Tiles) {
-            item.GetComponent<Item>().Initialize();
-        }
+
+        var index = UnityEngine.Random.Range(0, 2);
+        if (index == 0)
+            index = 1;
+        else if (index == 1)
+            index = 3;
+        
+        foreach (var item in gridmanager.Tiles)
+                item.GetComponent<Item>().Initialize(index);   
         start = transform.position;
     }
 

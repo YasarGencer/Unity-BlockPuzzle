@@ -64,6 +64,13 @@ public class ThemeManager : MonoBehaviour
             Colorize(item, colors[2]);
         foreach (var item in color3)
             Colorize(item, colors[3]);
+        foreach (var item in GameObject.FindObjectsOfType<Item>()) {
+            var index = UnityEngine.Random.Range(0,2);
+            if (index == 0)
+                item.Initialize(1);
+            else if (index == 1)
+                item.Initialize(3); 
+        } 
 
         Camera.main.backgroundColor= colors[0];
     }

@@ -12,9 +12,11 @@ public class ScoreManager : MonoBehaviour
     public int ScoreMultiplier;
     private int killedLayerCount;
     bool isScoreUp;
+    bool colorBonus;
 
     public void Initialize() {
         isScoreUp = false;
+        colorBonus = false;
         Score = 0;
         killedLayerCount = 0;
         MainManager.Instance.EventManager.onKill += OnKill;
@@ -30,15 +32,22 @@ public class ScoreManager : MonoBehaviour
         Score += ScoreMultiplier * killedLayerCount;
         Invoke("ScoreUp", .1f);
     } 
+    public void ColorBonus() {
+        colorBonus = true;
+    }
     private void ScoreUp() {
         if (isScoreUp == true)
             return;
         isScoreUp = true;
 
-        MainManager.Instance.EventManager.RunOnScoreUp(Score, Score - oldScore);
+        if (colorBonus)
+            Score += Score - oldScore;
+
+        MainManager.Instance.EventManager.RunOnScoreUp(Score, Score - oldScore, colorBonus);
 
         killedLayerCount = 0;
         oldScore = Score;
+        colorBonus = false;
 
         Invoke("SetScoreUp", .15f);
     }
@@ -68,4 +77,5 @@ public class ScoreManager : MonoBehaviour
     void SetHighscore(int index, int value) {
         PlayerPrefs.SetInt("hs" + index, value);
     }
+
 }

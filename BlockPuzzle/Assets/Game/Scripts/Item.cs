@@ -1,14 +1,23 @@
-using DG.Tweening; 
+using DG.Tweening;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Item : MyGrid.Code.TileController {
     [SerializeField] LayerMask shootLayer;
     bool isAlive = true;
     Rigidbody2D rb;
+    bool canPunch = true;
+    public void Initialize(int index) {
+        if(canPunch)
+            transform.DOPunchScale(new Vector3(1, 1, 0), .5f, 0, 0).OnComplete(() => canPunch = true);
+        canPunch = false;
 
-    public void Initialize() {
-        transform.DOPunchScale(new Vector3(1, 1, 0), .5f, 0, 0); 
-        GetComponent<SpriteRenderer>().color = MainManager.Instance.ThemeManager.GetActiveTheme().GetColors()[3];
+        GetComponent<SpriteRenderer>().color = MainManager.Instance.ThemeManager.GetActiveTheme().GetColors()[index]; 
+        if (index  == 3) 
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = MainManager.Instance.ThemeManager.GetActiveTheme().GetColors()[1];
+        else
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = MainManager.Instance.ThemeManager.GetActiveTheme().GetColors()[3];
     }
      
 

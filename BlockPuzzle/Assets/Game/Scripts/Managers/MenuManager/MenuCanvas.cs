@@ -9,6 +9,8 @@ public class MenuCanvas : UI {
         customizationPanel.Initialize();
     }
     public void StartButton() {
+        MainManager.Instance.ItemsManager.Initialize();
+        MainManager.Instance.GameManager.Initialize();
         Close();
     }
     public void CustomizationButton() {

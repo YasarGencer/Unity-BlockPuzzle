@@ -36,8 +36,8 @@ public class MainManager : MonoBehaviour {
         coinManager = GetComponent<CoinManager>();
 
         eventManager.Initialize();
-        gameManager.Initialize();
-        itemsManager.Initialize();
+        //gameManager.Initialize();
+        //itemsManager.Initialize();
         themeManager.Initialize();
         scoreManager.Initialize();
         coinManager.Initialize();
